@@ -2,7 +2,7 @@
     "name": "andrevitor103/pagamento-simplificado",
     "autoload": {
         "psr-4": {
-            "Andrevitor103\\PagamentoSimplificado\\": "src/"
+            "src\\": "src/"
         }
     },
     "authors": [
@@ -13,6 +13,10 @@
     ],
     "require": {
         "ramsey/uuid": "^4.7",
-        "slim/slim": "^4.11"
+        "slim/slim": "^4.12",
+        "slim/psr7": "^1.6",
+        "php-di/php-di": "^7.0",
+        "illuminate/validation": "^10.19",
+        "illuminate/http": "^10.19"
     }
 }

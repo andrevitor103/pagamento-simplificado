@@ -4,14 +4,14 @@ namespace src\controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use src\command\user\create\CreateCommand;
+use src\command\user\create\CreateHandler as CreateCreateHandler;
 use src\controller\DTO\user\CreateUserRequest;
-use src\user\command\CreateCommand;
-use src\user\command\CreateHandler;
 
 final class UserCreateController 
 {
     public function __construct(
-        private readonly CreateHandler $handler
+        private readonly CreateCreateHandler $handler
     ) {
     }
 

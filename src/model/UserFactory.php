@@ -14,7 +14,8 @@ final class UserFactory {
         string $type
     ): User
     {
-        if (strtoupper($type) == UserType::SHOPKEEPER) 
+        $type = strtoupper($type);
+        if ($type == UserType::SHOPKEEPER->name) 
         {
             return ShopkeeperUser::create(
                 $firstName,
@@ -25,7 +26,7 @@ final class UserFactory {
             );
         }
 
-        if (strtoupper($type) == UserType::COMMON) 
+        if ($type == UserType::COMMON->name) 
         {
             return CommonUser::create(
                 $firstName,

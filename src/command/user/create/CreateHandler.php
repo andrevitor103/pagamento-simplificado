@@ -1,6 +1,6 @@
 <?php
 
-namespace src\user\command;
+namespace src\command\user\create;
 
 use RuntimeException;
 use src\command\Command;
