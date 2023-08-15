@@ -1,0 +1,15 @@
+{
+    "name": "andrevitor103/pagamento-simplificado",
+    "autoload": {
+        "psr-4": {
+            "Andrevitor103\\PagamentoSimplificado\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "andrevitor103",
+            "email": "andrevitor103@gmail.com"
+        }
+    ],
+    "require": {}
+}
