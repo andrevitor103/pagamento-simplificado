@@ -3,6 +3,7 @@
 namespace src\model;
 
 use RuntimeException;
+use src\model\exceptions\InvalidUserTypeException;
 
 final class UserFactory {
     public static function create(
@@ -36,6 +37,6 @@ final class UserFactory {
                 $password
             );
         }
-        throw new RuntimeException("Could not create user with type: $type");
+        throw new InvalidUserTypeException($type);
     }
 }

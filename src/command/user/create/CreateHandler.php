@@ -23,7 +23,7 @@ final class CreateHandler implements CommandHandler {
 
         if ($user) 
         {
-            throw new RuntimeException('User already exists');
+            return;
         }
 
         $user = UserFactory::create(
