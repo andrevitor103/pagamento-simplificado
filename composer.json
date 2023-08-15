@@ -11,5 +11,8 @@
             "email": "andrevitor103@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "ramsey/uuid": "^4.7",
+        "slim/slim": "^4.11"
+    }
 }
