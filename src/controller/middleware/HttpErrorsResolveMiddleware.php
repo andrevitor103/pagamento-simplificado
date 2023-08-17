@@ -28,7 +28,7 @@ final class HttpErrorsResolveMiddleware implements MiddlewareInterface
                 ->withHeader('Content-Type', 'application/json')
                 ->withStatus(409);
         } catch (ValidationException $validationException) {
-            throw new UnprocessableEntityHttpException($validationException->errors());
+            throw new UnprocessableEntityHttpException($validationException->getMessage());
         } catch (Throwable $th) {
             $response
                 ->getBody()
