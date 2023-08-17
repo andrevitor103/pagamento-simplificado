@@ -2,11 +2,11 @@
 
 namespace src\command\user\create;
 
-use RuntimeException;
 use src\command\Command;
 use src\command\CommandHandler;
 use src\command\wallet\create\CreateHandler as WalletCreate;
 use src\command\wallet\create\CreateCommand as WalletCommand;
+use src\model\exceptions\AlreadyUserExistsException;
 use src\model\repository\UserRepository;
 use src\model\UserFactory;
 
@@ -23,7 +23,7 @@ final class CreateHandler implements CommandHandler {
 
         if ($user) 
         {
-            return;
+            throw new AlreadyUserExistsException();
         }
 
         $user = UserFactory::create(

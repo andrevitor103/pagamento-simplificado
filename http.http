@@ -7,5 +7,5 @@ content-type: application/json
     "document": "99999999999",
     "email": "teste@gmail.com",
     "password": "12345678",
-    "type": "COMMON"
+    "types": "COMMON"
 }
