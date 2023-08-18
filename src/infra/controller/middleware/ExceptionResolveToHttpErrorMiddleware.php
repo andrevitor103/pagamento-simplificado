@@ -1,19 +1,19 @@
 <?php
 
-namespace src\controller\middleware;
+declare(strict_types=1);
 
+namespace src\infra\controller\middleware;
 
 use Illuminate\Validation\ValidationException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
-use src\model\exceptions\AlreadyUserExistsException;
 use Slim\Psr7\Response as ResponseImplementation;
-use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use src\model\exceptions\AlreadyUserExistsException;
 use Throwable;
 
-final class HttpErrorsResolveMiddleware implements MiddlewareInterface
+final class ExceptionResolveToHttpErrorMiddleware implements MiddlewareInterface
 {
     public function process(Request $request, Handler $handler): Response
     {
@@ -28,7 +28,12 @@ final class HttpErrorsResolveMiddleware implements MiddlewareInterface
                 ->withHeader('Content-Type', 'application/json')
                 ->withStatus(409);
         } catch (ValidationException $validationException) {
-            throw new UnprocessableEntityHttpException($validationException->getMessage());
+            $response
+                ->getBody()
+                ->write($validationException->validator->errors()->__toString());
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(422);
         } catch (Throwable $th) {
             $response
                 ->getBody()

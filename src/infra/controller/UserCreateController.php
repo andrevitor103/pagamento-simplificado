@@ -1,12 +1,12 @@
 <?php
 
-namespace src\controller;
+namespace src\infra\controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use src\command\user\create\CreateCommand;
 use src\command\user\create\CreateHandler as CreateCreateHandler;
-use src\controller\DTO\user\CreateUserRequest;
+use src\infra\controller\DTO\user\input\CreateUserDTO;
 
 final class UserCreateController 
 {
@@ -14,19 +14,19 @@ final class UserCreateController
         private readonly CreateCreateHandler $handler
     ) {
     }
-
-    public function execute(ServerRequestInterface $request, ResponseInterface $response)
+    public function execute(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $data = CreateUserRequest::create($request->getParsedBody());
+        $data = $request->getParsedBody();
+        $userDTO = new CreateUserDTO(
+            $data['firstName'],
+            $data['lastName'],
+            $data['document'],
+            $data['email'],
+            $data['password'],
+            $data['type']
+        );
         $this->handler->execute(
-            new CreateCommand(
-                $data->firstName,
-                $data->lastName,
-                $data->document,
-                $data->email,
-                $data->password,
-                $data->type,
-            )
+            new CreateCommand($userDTO)
         );
         return $response
                 ->withHeader('Content-Type', 'application/json')

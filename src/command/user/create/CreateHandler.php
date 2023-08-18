@@ -19,7 +19,7 @@ final class CreateHandler implements CommandHandler {
 
     public function execute(Command|CreateCommand $command): void
     {
-        $user = $this->repository->find($command->email, $command->document);
+        $user = $this->repository->find($command->user->email, $command->user->document);
 
         if ($user) 
         {
@@ -27,12 +27,12 @@ final class CreateHandler implements CommandHandler {
         }
 
         $user = UserFactory::create(
-            $command->firstName,
-            $command->lastName,
-            $command->document,
-            $command->email,
-            $command->password,
-            $command->type
+            $command->user->firstName,
+            $command->user->lastName,
+            $command->user->document,
+            $command->user->email,
+            $command->user->password,
+            $command->user->type
         );
 
         $this->repository->create($user);

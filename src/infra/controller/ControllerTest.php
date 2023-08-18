@@ -1,5 +1,5 @@
 <?php
-namespace src\controller;
+namespace src\infra\controller;
 
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;

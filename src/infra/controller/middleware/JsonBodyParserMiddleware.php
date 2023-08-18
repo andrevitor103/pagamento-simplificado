@@ -1,6 +1,8 @@
 <?php
 
-namespace src\controller\middleware;
+declare(strict_types=1);
+
+namespace src\infra\controller\middleware;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
