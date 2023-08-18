@@ -17,16 +17,15 @@ final class UserCreateController
     public function execute(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $data = $request->getParsedBody();
-        $userDTO = new CreateUserDTO(
-            $data['firstName'],
-            $data['lastName'],
-            $data['document'],
-            $data['email'],
-            $data['password'],
-            $data['type']
-        );
         $this->handler->execute(
-            new CreateCommand($userDTO)
+            new CreateCommand(
+                $data['firstName'],
+                $data['lastName'],
+                $data['document'],
+                $data['email'],
+                $data['password'],
+                $data['type']
+            )
         );
         return $response
                 ->withHeader('Content-Type', 'application/json')

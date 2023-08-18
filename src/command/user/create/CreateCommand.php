@@ -9,7 +9,12 @@ use src\infra\controller\DTO\user\input\CreateUserDTO;
 
 final class CreateCommand implements Command {
     public function __construct(
-        public readonly CreateUserDTO $user
+        public readonly string $firstName,
+        public readonly string $lastName,
+        public readonly string $document,
+        public readonly string $email,
+        public readonly string $password,
+        public readonly string $type
     ) {
     }
 }
