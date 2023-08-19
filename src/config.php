@@ -3,6 +3,10 @@
 use DI\Container;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Validation\Factory;
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use src\app\gateway\authorizeTransferService\AuthorizeTransferService as AuthorizeTransferServiceInterface;
 use src\app\model\repository\UserRepository;
 use src\app\model\repository\WalletRepository;
@@ -32,6 +36,13 @@ $container->set(Factory::class, function () {
 
 $container->set(AuthorizeTransferServiceInterface::class, function () {
     return new AuthorizeTransferService(new Client());
+});
+
+$container->set(LoggerInterface::class, function () {
+    $logger = new Logger('');
+    $logger->pushHandler(new StreamHandler(__DIR__.'/pagamento_simplificado_logs.log'));
+    $logger->pushHandler(new ErrorLogHandler());
+    return $logger;
 });
 
 return $container;

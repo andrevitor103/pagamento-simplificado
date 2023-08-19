@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace src\app\command\transfer;
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use RuntimeException;
+use Slim\Logger;
 use src\app\command\Command;
 use src\app\command\CommandHandler;
 use src\app\gateway\authorizeTransferService\AuthorizeTransferService;
