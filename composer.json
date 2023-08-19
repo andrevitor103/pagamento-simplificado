@@ -17,6 +17,7 @@
         "slim/psr7": "^1.6",
         "php-di/php-di": "^7.0",
         "illuminate/validation": "^10.19",
-        "illuminate/http": "^10.19"
+        "illuminate/http": "^10.19",
+        "guzzlehttp/guzzle": "^7.0"
     }
 }

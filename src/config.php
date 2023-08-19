@@ -1,12 +1,15 @@
 <?php
 
 use DI\Container;
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Validation\Factory;
-use src\infra\controller\validation\FactoryServiceProvider;
+use src\app\gateway\authorizeTransferService\AuthorizeTransferService as AuthorizeTransferServiceInterface;
+use src\app\model\repository\UserRepository;
+use src\app\model\repository\WalletRepository;
+use src\infra\http\controller\validation\FactoryServiceProvider;
+use src\infra\http\gateway\AuthorizeTransferService;
 use src\infra\repository\UserRepositoryInMemory;
 use src\infra\repository\WalletRepositoryInMemory;
-use src\model\repository\UserRepository;
-use src\model\repository\WalletRepository;
 
 $configuration = [
     'settings' => [
@@ -26,4 +29,9 @@ $container->set(WalletRepository::class, function () {
 $container->set(Factory::class, function () {
     return FactoryServiceProvider::buildDefault();
 });
+
+$container->set(AuthorizeTransferServiceInterface::class, function () {
+    return new AuthorizeTransferService(new Client());
+});
+
 return $container;
