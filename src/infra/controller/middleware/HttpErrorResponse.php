@@ -12,8 +12,8 @@ final class HttpErrorResponse
     {
         $response = new Response();
         $response->getBody()->write($message);
-        $response->withHeader('Content-Type', self::CONTENT_TYPE);
-        $response->withStatus($statusCode);
-        return $response;
+        return $response
+                ->withHeader('Content-type', self::CONTENT_TYPE)
+                ->withStatus($statusCode);
     }
 }

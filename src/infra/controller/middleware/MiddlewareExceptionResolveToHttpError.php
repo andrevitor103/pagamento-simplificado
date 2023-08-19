@@ -20,10 +20,9 @@ final class MiddlewareExceptionResolveToHttpError implements MiddlewareInterface
         } catch (AlreadyUserExistsException $e) {
             return HttpErrorResponse::build($e->getMessage(), 409);
         } catch (ValidationException $e) {
-            HttpErrorResponse::build($e->getMessage(), 400);
+            return HttpErrorResponse::build($e->validator->errors()->__toString(), 400);
         } catch (Throwable $th) {
-            HttpErrorResponse::build($th->getMessage());
+            return HttpErrorResponse::build($th->getMessage());
         }
-        return HttpErrorResponse::build();
     }
 }
