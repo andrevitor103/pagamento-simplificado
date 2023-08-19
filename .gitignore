@@ -1,4 +1,4 @@
 /vendor/
 .vscode
 .idea
-/src/pagamento_simplificado_logs.log
+./src/pagamento_simplificado_logs.log
