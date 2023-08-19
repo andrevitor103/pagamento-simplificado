@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 
-final class JsonBodyParserMiddleware implements MiddlewareInterface {
+final class MiddlewareJsonBodyParser implements MiddlewareInterface {
     public function process(Request $request, Handler $handler): Response
     {
         $contentType = $request->getHeaderLine('Content-Type');

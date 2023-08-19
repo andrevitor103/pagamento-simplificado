@@ -11,8 +11,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use src\model\exceptions\AlreadyUserExistsException;
 use Throwable;
-
-final class HttpErrorsResolveMiddleware implements MiddlewareInterface
+final class MiddlewareExceptionResolveToHttpError implements MiddlewareInterface
 {
     public function process(Request $request, Handler $handler): Response
     {
