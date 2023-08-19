@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace src\infra\controller\middleware;
+
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Validation\ValidationException;
 use Psr\Http\Message\ResponseInterface;
@@ -40,7 +41,6 @@ final class MiddlewarePayloadValidator implements MiddlewareInterface
         ];
         return $routes[$request->getUri()->getPath()] ?? $this->buildDefaultValidation();
     }
-
     private function buildDefaultValidation(): Validation
     {
         return new class implements Validation {
