@@ -13,10 +13,8 @@ final class FactoryServiceProvider
 {
     public static function buildDefault(): ContractsFactory
     {
-        $loader = new ArrayLoader();
-        $loader->addMessages('en', 'validation', self::messages());
-        $translator = new Translator($loader, 'en');
-        return new Factory($translator);
+        $loader = ( new ArrayLoader() )->addMessages('en', 'validation', self::messages());
+        return new Factory(new Translator($loader, 'en'));
     }
 
     private static function messages(): array
