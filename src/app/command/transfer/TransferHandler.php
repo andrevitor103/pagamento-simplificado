@@ -20,11 +20,13 @@ final class TransferHandler implements CommandHandler
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly WalletRepository $walletRepository,
-        private readonly AuthorizeTransferService $authorizeTransferService
+        private readonly AuthorizeTransferService $authorizeTransferService,
+        private readonly LoggerInterface $logger
     ) {
     }
     public function execute(TransferCommand|Command $command): void
     {
+        $this->logger->notice('Transfer requested');
         $amount = $command->amount;
         $originAccount = $this->userRepository->find($command->originAccountId);
         $destinationAccount = $this->userRepository->find($command->destinationAccountId);
