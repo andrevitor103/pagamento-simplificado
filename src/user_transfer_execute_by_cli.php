@@ -9,7 +9,7 @@ use src\app\command\transfer\TransferCommand;
 use src\infra\cli\TransferControllerCli;
 
 // input example (all inline):
-//  php src/infra/cli/transfer_execute.php
+//  php src/user_transfer_execute_by_cli.php
 // --originAccountId=cc8b43ca-207f-4b73-be25-9b8c194ee5f8
 // --destinationAccountId=ea2bcb8d-fd48-483f-8a15-763d40a0c360
 // --amount=10
